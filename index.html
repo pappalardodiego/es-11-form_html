@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <title> Login - UNICA</title>
+
+
+
+
+
+        <!-- CSS integrato -->
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+                /* Stile Container del Form */
+
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+                /* Stile testo H1 classe Container */
+
+        .form-container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+
+                /* Margine dei raggruppamenti */
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+
+                /* Stile Label Input */
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+                /* Stile elementi Input di Testo */
+
+
+        input[type="text"], select {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+                /* Stile Bottoni */
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+                /* Stile Footer Globale dello script */
+
+        .global-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #ddd;
+        }
+
+
+
+            /* Stile Hover Mouse su Bottone */
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+
+            /* Sezioni nascoste */
+
+        .hidden {
+            display: none;
+        }
+
+
+                    /* Spaziatura e Grandezza elementi lista - Capolavori */
+
+        #teacherSection ul li {
+
+            font-size: 14px; 
+            margin-bottom: 20px;
+
+        }
+
+    </style>
+
+
+</head>
+
+
+
+
+
+
+         <!-- Corpo del sito HTML -->
+
+
+<body>
+
+
+        <!-- Pagina - Login -->
+
+
+<div class="form-container">
+    <h1>Login a UNICA</h1>
+
+    <form id="loginForm">
+
+        <div class="form-group">
+            <label for="username">Nome utente</label>
+            <input type="text" id="username" name="username" placeholder="Inserisci il tuo nome utente" required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Inserisci la tua password" required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="role">Scegli il tuo ruolo</label>
+            <select id="role" name="role" required>
+                <option value="">-- Seleziona il ruolo --</option>
+                <option value="Studente">Studente</option>
+                <option value="Docente">Docente</option>
+            </select>
+        </div>
+
+        <button type="button" id="loginButton">Accedi</button>
+    </form>
+
+</div>
+
+
+    <!-- Pagina - Studente - Compila Capolavoro -->
+
+<div class="form-container hidden" id="studentSection">
+    <h1>Il tuo capolavoro</h1>
+
+    <form id="CapolavoroForm">
+
+        <div class="form-group">
+            <label for="title">Titolo</label>
+            <input type="text" id="title" name="title" placeholder="Inserisci il titolo del Capolavoro" required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="image">Carica immagine</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="description">Descrizione</label>
+            <textarea id="description" name="description" placeholder="Scrivi una descrizione" required></textarea>
+        </div>
+
+        <button type="submit">Invia</button>
+    </form>
+</div>
+
+
+
+   <!-- Pagina - Docente - Capolavori -->
+
+<div class="form-container hidden" id="teacherSection">
+    <h1>Capolavori 5DSA</h1>
+    <ul>
+        <li><strong>Capolavoro 1:</strong> <br><br> - Titolo: "Sugoma" <br> - Descrizione: "Il susmogus" <br> - Alunno: Tilotta</li>
+        <li><strong>Capolavoro 2:</strong> <br><br> - Titolo: "Breakfast Club" <br> - Descrizione: "I love it" <br> - Alunno: Seby Greco</li>
+        <li><strong>Capolavoro 3:</strong> <br><br> - Titolo: "Starlink" <br> - Descrizione: "La salvezza di un uomo" <br> - Alunno: Florin Puscasu</li>
+    </ul>
+</div>
+
+
+
+   <!-- Pagina - Studente - Capolavoro Inviato -->
+
+<div class="form-container hidden" id="confirmationSection">
+    <h1>Capolavoro inviato</h1>
+    <p id="confirmationMessage"></p>
+</div>
+
+
+
+
+
+
+       <!-- JavaScript integrato -->
+
+
+<script>
+
+        //Leggo e salvo elementi di Login
+
+    document.getElementById('loginButton').addEventListener('click', function () {
+        const role = document.getElementById('role').value;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+
+                //Controllo inserimento degli elementi 
+
+        if (!username || !password || !role) {
+            alert('Per accedere devi compilare tutti i campi.');
+            return;
+        }
+
+
+                //Dopo aver fatto il login, nascondo il form
+
+        document.querySelector('.form-container').classList.add('hidden');
+
+
+
+                //Sulla base del ruolo, mostro la sezione relativa
+
+        if (role === 'Studente') {
+            document.getElementById('studentSection').classList.remove('hidden');
+        } else if (role === 'Docente') {
+            document.getElementById('teacherSection').classList.remove('hidden');
+        }
+    });
+
+
+            //Ricevo l'invio del form del Capolavoro
+
+    document.getElementById('CapolavoroForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+
+            //Leggo l'username e scrivo messaggio di conferma personalizzato
+
+        const username = document.getElementById('username').value;
+        document.getElementById('studentSection').classList.add('hidden');
+        document.getElementById('confirmationMessage').textContent = `Capolavoro inviato con successo, ${username}!`;
+
+        
+            //Mostro sezione di conferma invio Capolavoro
+
+        document.getElementById('confirmationSection').classList.remove('hidden');
+    });
+</script>
+
+
+
+<footer class="global-footer">
+    <p>Realizzato da Diego Pappalardo | 5DSA</p>
+</footer>
+
+</body>
+</html>
