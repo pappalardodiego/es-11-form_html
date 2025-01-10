@@ -16,15 +16,41 @@
     <style>
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+
             margin: 0;
             padding: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            font-family: Tahoma, sans-serif;
+
+
+            /* Sfondo rigato animato */
+
+            background: repeating-linear-gradient(
+                45deg,             /* Angolo delle righe */
+                #f4f4f9,           /* Colore chiaro */
+                #f4f4f9 9px,      /* Larghezza del colore chiaro */
+                #e0e0e5 10px,      /* Colore scuro */
+                #e0e0e5 20px       /* Larghezza del colore scuro */
+            );
+            background-size: 200% 200%; /* Dimensione area animazione */
+            animation: animateBackground 5s linear infinite; /* Animazione, velocità lineare, loop */
         }
+
+
+        /* Animazione righe - Keyframe posizione sfondo */
+
+        @keyframes animateBackground {
+            from {
+                background-position: 0 0; /* Pos iniziale (Angolo Alto SX) */
+            }
+            to {
+                background-position: 100% 100%; /* Pos finale (Angolo Basso DX) */
+            }
+        }
+
 
                 /* Stile Container del Form */
 
@@ -70,6 +96,14 @@
             border-radius: 5px;
         }
 
+                /* Stile evidenziazione */
+
+        .highlight {
+            color: #10bb03;
+            font-weight: bold; 
+        }
+
+
                 /* Stile Bottoni */
         
         button {
@@ -99,12 +133,18 @@
         }
 
 
+                /* Stile Bottone */
+
+        button {
+            background-color: #10bb03;
+        }
 
             /* Stile Hover Mouse su Bottone */
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #0a9200;
         }
+        
 
 
             /* Sezioni nascoste */
@@ -143,7 +183,7 @@
 
 
 <div class="form-container">
-    <h1>Login a UNICA</h1>
+    <h1>Login <span class="highlight">UNICA</span></h1>
 
     <form id="loginForm">
 
@@ -177,7 +217,7 @@
     <!-- Pagina - Studente - Compila Capolavoro -->
 
 <div class="form-container hidden" id="studentSection">
-    <h1>Il tuo capolavoro</h1>
+    <h1>Il tuo <span class="highlight">Capolavoro</span></h1>
 
     <form id="CapolavoroForm">
 
@@ -207,7 +247,7 @@
    <!-- Pagina - Docente - Capolavori -->
 
 <div class="form-container hidden" id="teacherSection">
-    <h1>Capolavori 5DSA</h1>
+    <h1><span class="highlight">Capolavori</span> 5DSA</h1>
     <ul>
         <li><strong>Capolavoro 1:</strong> <br><br> - Titolo: "Sugoma" <br> - Descrizione: "Il susmogus" <br> - Alunno: Tilotta</li>
         <li><strong>Capolavoro 2:</strong> <br><br> - Titolo: "Breakfast Club" <br> - Descrizione: "I love it" <br> - Alunno: Seby Greco</li>
@@ -220,7 +260,7 @@
    <!-- Pagina - Studente - Capolavoro Inviato -->
 
 <div class="form-container hidden" id="confirmationSection">
-    <h1>Capolavoro inviato</h1>
+    <h1><span class="highlight">Capolavoro</span> Inviato</h1>
     <p id="confirmationMessage"></p>
 </div>
 
